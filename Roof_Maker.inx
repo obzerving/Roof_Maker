@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>Roof Maker</name>
+  <id>org.inkscape.Roof_Maker</id>
+    <param name="usermenu" type="notebook">
+      <page name="settings" gui-text="Settings">
+	    <param name="unit" type="optiongroup" appearance="combo" gui-text="Dimensional units:">
+            <option translatable="no" value="in">in</option>
+            <option translatable="no" value="px">px</option>
+            <option translatable="no" value="pt">pt</option>
+            <option translatable="no" value="ft">ft</option>
+            <option translatable="no" value="yd">yd</option>
+            <option translatable="no" value="mm">mm</option>
+            <option translatable="no" value="cm">cm</option>
+            <option translatable="no" value="m">m</option>
+            <option translatable="no" value="km">km</option>
+        </param>
+		<param name="scoretype" type="optiongroup" appearance="combo" gui-text="Scoreline Type:">
+			<option translatable="no" value="dash">Dash Cut</option>
+			<option translatable="no" value="solid">Solid</option>
+		</param>
+        <param name ="roofwidth" type="float" precision="2" min="0.1" max="9999.0" gui-text="Roof Base Width (in Dimensional Units):">7.0</param>
+        <param name ="roofdepth" type="float" precision="2" min="0.1" max="9999.0" gui-text="Roof Base Depth (in Dimensional Units):">3.0</param>
+        <param name ="roofpeak" type="float" precision="2" min="0.1" max="9999.0" gui-text="Roof Peak Height (in Dimensional Units):">2.0</param>
+        <param name ="roof_inset" type="float" precision="2" min="-9999.0" max="9999.0" gui-text="Roof Inset (in Dimensional Units):">0.0</param>
+		<param name ="basecutout" type="float" precision="2" min="-9999.0" max="9999.0" gui-text="Base cutout margin (in Dimensional Units):">1.0</param>
+		<param name = "isbarn" type="optiongroup" appearance="combo" gui-text="Roof Style" >
+			<option translatable="no" value="False">Normal</option>
+			<option translatable="no" value="True">Barn (insets will be ignored</option>
+	    </param>
+		
+        <param name="dormerht" type="float" precision="2" min="0.00" max="9999.0" gui-text="Dormer Height (in Dimensional Units; zero for no dormer):">1.5</param>
+		<param name="dormertopht" type="float" precision="2" min="0.00" max="9999.0" gui-text="Dormer top Height (in Dimensional Units; zero for no dormer):">.5</param>
+        <param name="basewidth" indent="1" type="float" precision="2" min="0.01" max="9999.0" gui-text="Dormer Width (in Dimensional Units):">1.0</param>
+		
+		<param name="sides" indent="1" type="int" min="2" max="48" gui-text="Dormer top segments:">4</param>
+		
+		
+
+      </page>
+		<page name="_advanced" gui-text="Advanced">
+		
+			<param name= "stickout" indent="1"  type="float" precision="2" min="0" max="9999.0" gui-text="Extend distance of dormer base from roof (in Dimensional Units)">0</param>
+			<param name= "paper" indent="1"  type="float" precision="3" min="0" max="9999.0" gui-text="Thickness of paper (in Dimensional Units)">0.012</param>
+
+			
+			<param name= "window_frame" indent="1"  type="float" precision="3" min="0" max="50" gui-text="Dormer pane frame thickness (% of width)">0.125</param>
+			
+			<param name ="bhratio" type="float" precision="2" min="0.01" max="1.0" gui-text="Relative barn angle distance down (percentage):">0.20</param>
+			
+			<param name="bdratio" type="float" precision="2" min="0.0" max="1.0" gui-text="Relative barn angle distance out (percentage):">0.4</param>
+	  </page>
+	  <page name="Chimney" gui-text="Chimney">
+		<param name="chimney_ht"    type="float" precision="3" min="0.0" max="9999.0" gui-text="Chimney height above roof(top side)">1.0</param>
+		<param name="chimney_wd"    type="float" precision="3" min="0.0" max="9999.0" gui-text="Chimney width (in Dimensional Units)">2</param>
+		<param name="chimney_depth" type="float" precision="3" min="0.0" max="9999.0" gui-text="Chimney depth (in Dimensional Units)">1.5</param>
+		<param name="off_center"    type="float" precision="3" min="0.0" max="1.0"    gui-text="Offset over peak (in Dimensional Units)">.2</param>
+		<param name="shrink"    type="float" precision="3" min="0.0" max="90"    gui-text="Tab/Score shrink (percentage)">.67</param>
+	  </page>
+      <page name="_help" gui-text="Help: Roof">
+        <label xml:space="preserve">  Roof Help
+
+Roof Base Width:  From a front view, this is the left to right width of the roof
+Roof Base Depth:  From front to back at the base of the roof
+Roof Peak Height: The vertical measure from the base of the roof to the peak
+Roof Inset:   If used, this will make your roof narrower at the top than the bottom . The inset refers to how much this is on each side.  E.g.  if you use .5",  the top of the roof will be a total of 1" shorter than the base.
+Base Cutout Margin: For ease of construction, and to allow light to pass through, the base of the roof has a cutout.  This option lets you choose the margin width. (nonsensical entries will default to a usable number.)
+Roof Style: 
+Normal: One angle from base to peak. 
+Barn:  The angle at near the top will change to tilt in more 
+
+		</label>
+      </page>
+
+      <page name="_help1" gui-text="Help: Dormers">
+        <label xml:space="preserve">   Dormer Settings
+
+Dormer Height:  The height of the dormer window.  If zero, then no dormer windows will be drawn.
+Dormer Width: The width of the dormer (from a front view)
+Dormer Top Height: The height of the "curved" roof of the dormer.  The remainder of the dormer height will be a rectangular base below it.
+Sides: This value is how many segments will be used to create the dormer roof.  2 is a point, and up to 96 for very rounded and LOTS of tabs. 0 is flat
+</label>
+      </page>
+	  
+      <page name="_help2" gui-text="Help:Advanced">
+        <label xml:space="preserve">   Advanced Help
+
+Extend depth of dormer: Normally the dormer will be flush to the roof at the base. This amount will be used to allow your dormer base to be outset from the roof.
+Paper thickness: Nominally 0.012  -- this just adjusts the size of the hole template for the dormer 
+Omit base:  If using a dormer type other than Just the Base, then you can opt to use only the top  shape of the window.  This will limit your dormer height to the shape of the top of the dormer.  (The calculated height of the dormer top is normally equal to half the width of your dormer.)
+
+Dormer pane frame thickness % : This is how thick you want the "frame" area around the dormer window "glass" pane.  Increase this to have more room for trim, for instance.
+Relative barn angle distance down: On barn type roofs, this affects where the change in the roof angle occurs, as a percentage (downward) of the roof peak height. Smaller numbers will result in the roof angle change occurring closer to the roof peak.
+
+Relative barn angle distance adjust: On barn type roofs, this affects where the change in the roof angle occurs, as a percentage (inward from edge) of the roof depth/2. Larger numbers will bring the change in angle closer to the center.
+		</label>
+      </page>
+	  <page name="_help3" gui-text="Help:Chimney">
+        <label xml:space="preserve">   Chimney Help
+To build a chimney that sits on the roof:
+
+Chimney depth is the front to back measurement
+
+Chimney width is the left to right measurement
+
+If either chimney depth or chimney height is zero, then no chimney will be built.
+Chimney height is the measurment from the roof to the top of the chimney. This is the measurement from the highest point that the roof intersects the chimney, to the top of the chimney. For example if your chimney crosses the peak, and you have a height of 1 inch, the top of your chimney will be 1 inch above your peak. 
+
+Offset over peak  is how much of the roof you want to be across the peak to the front of the roof.  Example: 0 -- none, .5 -- halfway, 1 -- all.  
+
+Shrink is used to adjust the tabs/scores when acute angles cause an overlap. Defaults to .67
+
+Use the chimney hole piece as a template to cut out from your decorative (and optionally, your structure) paper to allow the tabs to be hidden when attaching the chimney.  The scorelines (if any) will align with the peak.
+		</label>
+      </page>
+    </param>
+  <effect needs-live-preview="false">
+    <!--object-type>path</object-type-->
+    <effects-menu>
+      <submenu name="Papercraft"/>
+    </effects-menu>
+  </effect>
+  <script>
+    <command location="inx" interpreter="python">Roof_Maker.py</command>
+  </script>
+</inkscape-extension>
